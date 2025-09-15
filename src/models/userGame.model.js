@@ -1,15 +1,16 @@
 import mongoose, { Model, mongo, Schema } from "mongoose";
-import { UserModel } from "./user.model";
+
 const userGameSchema = new Schema(
     {
         user_id: {
             type: Schema.Types.ObjectId,
-            ref: U
+            ref: "User",
             required: true,
             unique: true,
         },
         games_id: {
             type: Schema.Types.ObjectId,
+            ref: "Games",
             required: true,
             unique: true,
         },

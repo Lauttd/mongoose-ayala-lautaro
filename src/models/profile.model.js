@@ -25,3 +25,5 @@ const profileSchema = new Schema(
         },
     },
 );
+
+export const ProfileModel = mongoose.model("Profile", profileSchema);

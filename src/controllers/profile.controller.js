@@ -58,7 +58,7 @@ export const deleteUser = async (req, res) => {
     const {id} = req.params;
     const { name, edad, pais, description } = req.body
     try {
-        const deletePerfil = await ProfileModel(id, {
+        const deletePerfil = await ProfileModel.findByAndDelete(id, {
             name,
             edad,
             pais,

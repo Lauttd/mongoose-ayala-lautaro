@@ -57,7 +57,7 @@ export const deleteGames = async (req, res) => {
     const {id} = req.params;
     const { nombre, categoria, genero, multiplayer } = req.body
     try {
-        const deleteGames = await UserModel(id, {
+        const deleteGames = await UserModel.findByAdnDelete(id, {
             nombre,
             categoria,
             genero,
