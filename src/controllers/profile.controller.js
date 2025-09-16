@@ -54,7 +54,7 @@ export const updateProfile = async (req, res) => {
     }
 };
 
-export const deleteUser = async (req, res) => {
+export const deleteProfile = async (req, res) => {
     const {id} = req.params;
     const { name, edad, pais, description } = req.body
     try {
