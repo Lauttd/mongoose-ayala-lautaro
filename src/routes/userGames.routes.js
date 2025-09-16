@@ -1,11 +1,11 @@
-import { get } from "mongoose";
-import { createUser, getAllUser, getByIdUser, updateUser, deleteUser } from "../controllers/user.controller.js";
+import { createUserGame, getAllUserGame, getByIdUserGame, updateUserGame, deleteUserGame } from "../controllers/userGame.controller.js";
 import { Router } from "express";
+
 
 export const userRouter = Router();
 
-userRouter.post("/user", createUser);
-userRouter.get("/user", getAllUser);
-userRouter.get("/user/:id", getByIdUser);
-userRouter.put("/user/:id", updateUser);
-userRouter.delete("/user/:id", deleteUser);
+userRouter.post("/user", createUserGame);
+userRouter.get("/user", getAllUserGame);
+userRouter.get("/user/:id", getByIdUserGame);
+userRouter.put("/user/:id", updateUserGame);
+userRouter.delete("/user/:id", deleteUserGame);
