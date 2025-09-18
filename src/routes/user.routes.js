@@ -1,4 +1,4 @@
-import { get } from "mongoose";
+
 import { createUser, getAllUser, getByIdUser, updateUser, deleteUser } from "../controllers/user.controller.js";
 import { Router } from "express";
 

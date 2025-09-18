@@ -1,4 +1,4 @@
-import { Model, Schema } from "mongoose";
+import mongoose, { Model, Schema } from "mongoose";
 
 const profileSchema = new Schema(
     {
@@ -13,11 +13,16 @@ const profileSchema = new Schema(
             unique: true,
         },
         pais: {
-
+            type: String,
+            required: false,
+            unique: false,
         },
         description: {
-//aca estamos relacionando 1 a 1
+            type: String,
+            required: false,
+            unique: false,
         }, 
+        //aca estamos relacionando 1 a 1
         user: {
             type: Schema.Types.ObjectId,
             ref: "User",

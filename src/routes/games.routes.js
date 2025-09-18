@@ -1,10 +1,10 @@
 import { createGames, getAllGame, getByIdGames, updateGames, deleteGames } from "../controllers/games.controller.js";
 import { Router } from "express";
 
-export const userRouter = Router();
+export const gamesRouter = Router();
 
-userRouter.post("/user", createGames);
-userRouter.get("/user", getAllGame);
-userRouter.get("/user/:id", getByIdGames);
-userRouter.put("/user/:id", updateGames);
-userRouter.delete("/user/:id", deleteGames);
+gamesRouter.post("/games", createGames);
+gamesRouter.get("/games", getAllGame);
+gamesRouter.get("/games/:id", getByIdGames);
+gamesRouter.put("/games/:id", updateGames);
+gamesRouter.delete("/games/:id", deleteGames);

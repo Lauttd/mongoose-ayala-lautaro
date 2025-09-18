@@ -1,12 +1,12 @@
-import { GamesModel } from "../models/games.model";
+import { GamesModel } from "../models/games.model.js";
 
 export const createGames = async (req, res) => {
-    const { nombre, categoria, genero, multiplayer } = req.body
+    const { nombre, categoria, genero, owner,  multiplayer, premiaciones } = req.body
     try {
-        const crearGame = await UserModel.create({nombre, categoria, genero, multiplayer});
+        const crearGame = await GamesModel.create({nombre, categoria, genero, owner, multiplayer, premiaciones});
         return res.status(201).json({msg: "Se creo el juego correctamente", data: crearGame});
     } catch (error) {
-        console.log("no se pudo crear el juego");
+        console.log("no se pudo crear el juego", error);
         return res.status(500).json({msg: "Error por parte del servidor", error});
     }
 };
@@ -34,13 +34,15 @@ export const getByIdGames = async (req, res) => {
 
 export const updateGames = async (req, res) => {
     const {id} = req.params;
-    const { nombre, categoria, genero, multiplayer } = req.body
+    const { nombre, categoria, genero, owner,  multiplayer, premiaciones } = req.body
     try {
         const actualizarGames = await GamesModel.findByIdAndUpdate(id, {
             nombre,
             categoria,
             genero,
+            owner, 
             multiplayer,
+            premiaciones,
         },
             {
                 new: true,
@@ -55,16 +57,9 @@ export const updateGames = async (req, res) => {
 
 export const deleteGames = async (req, res) => {
     const {id} = req.params;
-    const { nombre, categoria, genero, multiplayer } = req.body
+    const { nombre, categoria, genero, owner, multiplayer,premiaciones } = req.body
     try {
-        const deleteGames = await UserModel.findByAdnDelete(id, {
-            nombre,
-            categoria,
-            genero,
-            multiplayer,
-        }, {
-            new: true,
-        });
+        const deleteGames = await GamesModel.findByIdAndDelete(id)
 
         return res.status(200).json({msg: "Se elimino el juego", data: deleteGames});
     } catch (error) {

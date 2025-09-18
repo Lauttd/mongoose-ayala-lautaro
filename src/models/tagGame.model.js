@@ -1,10 +1,11 @@
 import mongoose, { Model, mongo, Schema } from "mongoose";
 
-const userGameSchema = new Schema(
+//Relacion muchos a muchos con tag y games
+const TagGameSchema = new Schema(
     {
-        user_id: {
+        tag_id: {
             type: Schema.Types.ObjectId,
-            ref: "User",
+            ref: "Tag",
             required: true,
             unique: true,
         },
@@ -17,4 +18,4 @@ const userGameSchema = new Schema(
     },
 );
 
-export const UserGamesModel = mongoose.model("UserGame", userGameSchema);
+export const TagGamesModel = mongoose.model("TagGame", TagGameSchema);

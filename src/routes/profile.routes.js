@@ -1,10 +1,10 @@
 import { createProfile, getAllPerfil, getByIdPerfil, updateProfile, deleteProfile } from "../controllers/profile.controller.js";
 import { Router } from "express";
 
-export const userRouter = Router();
+export const profileRouter = Router();
 
-userRouter.post("/user", createProfile);
-userRouter.get("/user", getAllPerfil);
-userRouter.get("/user/:id", getByIdPerfil);
-userRouter.put("/user/:id", updateProfile);
-userRouter.delete("/user/:id", deleteProfile);
+profileRouter.post("/profile", createProfile);
+profileRouter.get("/profile", getAllPerfil);
+profileRouter.get("/profile/:id", getByIdPerfil);
+profileRouter.put("/profile/:id", updateProfile);
+profileRouter.delete("/profile/:id", deleteProfile);

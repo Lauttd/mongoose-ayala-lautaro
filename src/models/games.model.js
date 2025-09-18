@@ -1,4 +1,4 @@
-import mongoose, { Model, Schema } from "mongoose";
+import mongoose, { Model, Schema} from "mongoose";
 
 const GamesSchema = new Schema(
     {
@@ -18,11 +18,29 @@ const GamesSchema = new Schema(
             unique: false,
         },
         multiplayer: {
-            type: String,
+            type: Boolean,
             required: true,
             unique: false,
-        }
-    }
+        },
+        //Relacion uno a muchos con user 
+        owner: {
+            type: Schema.Types.ObjectId,
+            ref: "User",
+            required: true,
+        },
+        //documento embebido 
+        premiaciones: {
+            premio: {
+                type: String,
+                required: false,
+            },
+            año: {
+                type: Number,
+                required: true,
+            },
+        },
+        
+    },
 );
 
 export const GamesModel = mongoose.model("Games", GamesSchema);
