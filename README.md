@@ -14,3 +14,5 @@ El referenciado lo utilice para relacionar algunos modelos por ejemplo user y pe
 
 ¿Como se utiliza el populate desde las colecciones que no tienen referencias?
 "populate" en Mongoose sirve para traer datos relacionados entre colecciones, pero solo funciona si existe algún tipo de relación definida. Esto puede ser de dos formas: **directa**, cuando un documento guarda el "ObjectId" de otro y en el esquema se indica con un "ref" o **virtual**, cuando definimos en el esquema una relación inversa aunque ese campo no esté guardado físicamente, por ejemplo, decir que “un autor tiene muchos libros” aunque en realidad son los libros los que guardan la referencia. En ambos casos, "populate" puede resolver la relación y devolver la información combinada en una sola consulta. En cambio, si no existe ninguna relación definida (ni directa ni virtual), "populate" no se puede usar y la única opción es hacer consultas manuales y unir los resultados desde la aplicación.
+
+ELIMINACION LOGICA Y EN CASCADA: }

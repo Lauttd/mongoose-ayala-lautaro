@@ -14,9 +14,14 @@ const UserSchema = new Schema(
         },
         password: {
                 type: String,
-                required: true
+                required: true,
             },
+        //Eliminacion logica, No se borra fisicamente de la bd.
+        deleted: {
+            type: Boolean,
+            default: false,
         },
+    }
 );
 
-export const UserModel = mongoose.model("User", UserSchema)
+export const UserModel = mongoose.model("User", UserSchema);

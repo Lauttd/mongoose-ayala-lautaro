@@ -1,3 +1,6 @@
+import { GamesModel } from "../models/games.model.js";
+import { ProfileModel } from "../models/profile.model.js";
+import { TagGamesModel } from "../models/tagGame.model.js";
 import { UserModel } from "../models/user.model.js";
 
 export const createUser = async (req, res) => {
@@ -13,7 +16,11 @@ export const createUser = async (req, res) => {
 
 export const getAllUser = async (req, res) => {
     try {
-        const obtenerUsers = await UserModel.find();
+        const obtenerUsers = await UserModel.find(
+            {
+                deleted: false,
+            },
+        );
         return res.status(201).json({msg: "Se obtuvo todos los usuarios", data: obtenerUsers});
     } catch (error) {
         console.log("No se pudo obtener todos los usuarios");
@@ -52,16 +59,22 @@ export const updateUser = async (req, res) => {
     }
 };
 
+//Aplicamos la eliminacion logica.
 export const deleteUser = async (req, res) => {
     const {id} = req.params;
-    const {username, email, password} = req.body;
     try {
         const deleteUsuario = await UserModel.findByIdAndUpdate(id, {
             deleted: true,
         }, {
             new: true,
         });
-
+        //Eliminacion en cascada de User a perfil.
+     await ProfileModel.findOneAndDelete({user: deleteUsuario._id});
+        //Eliminacion en cascada de User a games.
+     const gameEliminado = await GamesModel.findOneAndDelete({owner: deleteUsuario._id});
+        //Eliminacion en cascada de User a tagGames.
+     await TagGamesModel.findOneAndDelete({games_id: gameEliminado._id});
+     
         return res.status(200).json({msg: "Se elimino el usuario", data: deleteUsuario});
     } catch (error) {
         console.log("No se pudo eliminar el usuario");

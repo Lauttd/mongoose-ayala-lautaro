@@ -1,4 +1,5 @@
 import { GamesModel } from "../models/games.model.js";
+import { TagGamesModel } from "../models/tagGame.model.js";
 
 export const createGames = async (req, res) => {
     const { nombre, categoria, genero, owner,  multiplayer, premiaciones } = req.body
@@ -57,9 +58,11 @@ export const updateGames = async (req, res) => {
 
 export const deleteGames = async (req, res) => {
     const {id} = req.params;
-    const { nombre, categoria, genero, owner, multiplayer,premiaciones } = req.body
     try {
         const deleteGames = await GamesModel.findByIdAndDelete(id)
+
+        //Eliminacion en cascada de la relacion games y tagGame
+        await TagGamesModel.findOneAndDelete({games_id: deleteGames._id});
 
         return res.status(200).json({msg: "Se elimino el juego", data: deleteGames});
     } catch (error) {

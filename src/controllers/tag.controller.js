@@ -60,6 +60,10 @@ export const deleteTag = async (req, res) => {
             new: true,
         });
 
+        //Eliminacion en cascada de tag a tagGame
+        await TagGamesModel.findOneAndDelete({tag_id: deleteCategoria._id});
+
+
         return res.status(200).json({msg: "Se elimino el tag", data: deleteCategoria});
     } catch (error) {
         console.log("No se pudo eliminar el tag");
