@@ -56,10 +56,8 @@ export const deleteUser = async (req, res) => {
     const {id} = req.params;
     const {username, email, password} = req.body;
     try {
-        const deleteUsuario = await UserModel.findByIdAndDelete(id, {
-            username,
-            email,
-            password,
+        const deleteUsuario = await UserModel.findByIdAndUpdate(id, {
+            deleted: true,
         }, {
             new: true,
         });
