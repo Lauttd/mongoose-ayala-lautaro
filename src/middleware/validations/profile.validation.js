@@ -1,33 +1,28 @@
 import { body } from "express-validator";
 
 export const profileValidation = [
-  body("user")
+  body("name")
     .notEmpty()
-    .withMessage("El ID de usuario es requerido")
+    .withMessage("El name de usuario es requerido")
     .isMongoId()
-    .withMessage("Debe ser un ID válido de MongoDB"),
+    .withMessage("Debe ser un name válido de MongoDB"),
 
-  body("bio")
+  body("edad")
     .optional()
-    .isLength({ max: 500 })
-    .withMessage("La biografía no puede exceder los 500 caracteres")
+    .isNumeric()
+    .withMessage("La edad debe ser un numero")
     .trim(),
 
-  body("person.birthday")
+  body("pais")
     .optional()
-    .isISO8601()
+    .isString()
     .withMessage(
-      "La fecha de cumpleaños debe tener formato válido (YYYY-MM-DD)"
+      "El pais debe ser un string"
     ),
 
-  body("person.age")
+  body("description")
     .optional()
-    .isInt({ min: 0, max: 120 })
-    .withMessage("La edad debe estar entre 0 y 120 años"),
+    .isString()
+    .withMessage("La description debe ser un string"),
 
-  body("person.country")
-    .optional()
-    .isLength({ max: 50 })
-    .withMessage("El país no puede exceder los 50 caracteres")
-    .trim(),
 ];
